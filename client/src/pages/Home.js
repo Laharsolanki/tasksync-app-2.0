@@ -1,3 +1,4 @@
+import TaskList from "../components/TaskList";
 import React, { useState } from "react";
 import "../App.css";
 
@@ -26,15 +27,7 @@ function Home() {
         onChange={(e) => setTask(e.target.value)}
       />
       <button onClick={addTask}>Add Task</button>
-
-      <ul>
-        {tasks.map((t, i) => (
-          <li key={i}>
-            {t}
-            <button onClick={() => deleteTask(i)}>❌</button>
-          </li>
-        ))}
-      </ul>
+      <TaskList tasks={tasks} deleteTask={deleteTask} />
     </div>
   );
 }
