@@ -1,4 +1,5 @@
 # tasksync-app
+
 Full stack task management app built with React and Node.js.
 
 # 🧩 TaskSync
@@ -23,11 +24,12 @@ tasksync-app/
 └── server/ # Node.js backend (setup in progress)
 
 ---
+
 ## 🛠️ Getting Started
 
 ### 👉 Frontend
 
-```bash
+````bash
 cd client
 npm install
 npm start
@@ -39,6 +41,14 @@ cd server
 npm install
 node server.js
 ```
+
+---
+
+## 🛠 Updates
+
+- **Day 4**
+  - Added a reusable `TaskList` component with props
+  - Initialized a Node.js + Express backend server (`server/server.js`)
 
 ---
 
