@@ -50,6 +50,12 @@ node server.js
   - Added a reusable `TaskList` component with props
   - Initialized a Node.js + Express backend server (`server/server.js`)
 
+- **Day 5**
+  - Implemented fetching tasks from the backend API (`/api/tasks`)
+  - Added CORS support in Express server
+  - Verified dynamic loading of tasks in React
+
+
 ---
 
 👤 Author
