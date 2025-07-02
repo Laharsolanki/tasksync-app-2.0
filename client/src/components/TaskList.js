@@ -3,10 +3,10 @@ import React from "react";
 function TaskList({ tasks, deleteTask }) {
   return (
     <ul>
-      {tasks.map((t, i) => (
-        <li key={i}>
-          {t}
-          <button onClick={() => deleteTask(i)}>❌</button>
+      {tasks.map((t) => (
+        <li key={t._id}>
+          {t.text}
+          <button onClick={() => deleteTask(t._id)}>❌</button>
         </li>
       ))}
     </ul>

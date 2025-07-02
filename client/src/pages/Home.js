@@ -1,28 +1,46 @@
 import TaskList from "../components/TaskList";
-import React, { useState , useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import "../App.css";
 
 function Home() {
   const [task, setTask] = useState("");
   const [tasks, setTasks] = useState([]);
-  useEffect(() => {
-  fetch("http://localhost:5000/api/tasks")
-    .then((res) => res.json())
-    .then((data) => {
-      setTasks(data);
-    })
-    .catch((err) => console.error(err));
-}, []);
 
+  // Fetch tasks from server
+  useEffect(() => {
+    fetch("http://localhost:5000/api/tasks")
+      .then((res) => res.json())
+      .then((data) => {
+        setTasks(data);
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
+  // Add task to DB
   const addTask = () => {
     if (task.trim() === "") return;
-    setTasks([...tasks, task]);
-    setTask("");
+    fetch("http://localhost:5000/api/tasks", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text: task }),
+    })
+      .then((res) => res.json())
+      .then((newTask) => {
+        setTasks([...tasks, newTask]);
+        setTask("");
+      })
+      .catch((err) => console.error(err));
   };
 
-  const deleteTask = (index) => {
-    const newTasks = tasks.filter((_, i) => i !== index);
-    setTasks(newTasks);
+  // Delete task from DB
+  const deleteTask = (id) => {
+    fetch(`http://localhost:5000/api/tasks/${id}`, {
+      method: "DELETE",
+    })
+      .then(() => {
+        setTasks(tasks.filter((t) => t._id !== id));
+      })
+      .catch((err) => console.error(err));
   };
 
   return (
