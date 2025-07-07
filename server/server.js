@@ -5,7 +5,7 @@ const cors = require("cors");
 const Task = require("./models/task");
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors());
@@ -16,7 +16,7 @@ mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log("✅ Connected to MongoDB Atlas"))
   .catch(err => console.error("❌ MongoDB connection error:", err));
 
-// Sample route
+// Get all tasks
 app.get("/api/tasks", async (req, res) => {
   try {
     const tasks = await Task.find(); // Fetch all tasks from MongoDB

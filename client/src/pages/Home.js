@@ -17,31 +17,42 @@ function Home() {
   }, []);
 
   // Add task to DB
-  const addTask = () => {
-    if (task.trim() === "") return;
-    fetch("http://localhost:5000/api/tasks", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ text: task }),
+ const addTask = () => {
+  if (task.trim() === "") return;
+
+  fetch("http://localhost:5000/api/tasks", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ text: task })
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      setTasks([...tasks, data]); // data is the saved object { _id, text }
+      setTask("");
     })
-      .then((res) => res.json())
-      .then((newTask) => {
-        setTasks([...tasks, newTask]);
-        setTask("");
-      })
-      .catch((err) => console.error(err));
-  };
+    .catch((err) => console.error(err));
+};
+
+
 
   // Delete task from DB
-  const deleteTask = (id) => {
-    fetch(`http://localhost:5000/api/tasks/${id}`, {
-      method: "DELETE",
+ const deleteTask = (index) => {
+  const taskToDelete = tasks[index];
+  if (!taskToDelete || !taskToDelete._id) return;
+
+  fetch(`http://localhost:5000/api/tasks/${taskToDelete._id}`, {
+    method: "DELETE"
+  })
+    .then(() => {
+      const newTasks = tasks.filter((_, i) => i !== index);
+      setTasks(newTasks);
     })
-      .then(() => {
-        setTasks(tasks.filter((t) => t._id !== id));
-      })
-      .catch((err) => console.error(err));
-  };
+    .catch((err) => console.error(err));
+};
+
+
 
   return (
     <div>
