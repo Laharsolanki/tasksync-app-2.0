@@ -6,7 +6,7 @@ function Home() {
   const [task, setTask] = useState("");
   const [tasks, setTasks] = useState([]);
 
-  const API_BASE = "https://adaptable-gentleness-production.up.railway.app";
+  const API_BASE = "https://adaptable-gentleness-production.up.railway.app/api/tasks";
 
   // Fetch tasks from server
   useEffect(() => {
