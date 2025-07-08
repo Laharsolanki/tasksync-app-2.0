@@ -10,7 +10,7 @@ function Home() {
 
   useEffect(() => {
     setLoading(true);
-    fetch("http://localhost:5000/api/tasks")
+    fetch("https://adaptable-gentleness-production.up.railway.app/api/tasks")
       .then((res) => res.json())
       .then((data) => {
         setTasks(data);
@@ -26,7 +26,7 @@ function Home() {
   const addTask = () => {
     if (task.trim() === "") return;
 
-    fetch("http://localhost:5000/api/tasks", {
+    fetch("https://adaptable-gentleness-production.up.railway.app/api/tasks", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -46,7 +46,7 @@ function Home() {
     const taskToDelete = tasks[index];
     if (!taskToDelete || !taskToDelete._id) return;
 
-    fetch(`http://localhost:5000/api/tasks/${taskToDelete._id}`, {
+    fetch(`https://adaptable-gentleness-production.up.railway.app/api/tasks/${taskToDelete._id}`, {
       method: "DELETE",
     })
       .then(() => {
