@@ -5,34 +5,39 @@ import "../App.css";
 function Home() {
   const [task, setTask] = useState("");
   const [tasks, setTasks] = useState([]);
-  const [showCelebration, setShowCelebration] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [hadTasksBefore, setHadTasksBefore] = useState(false); // New tracker
 
   useEffect(() => {
+    setLoading(true);
     fetch("http://localhost:5000/api/tasks")
       .then((res) => res.json())
-      .then((data) => setTasks(data))
-      .catch((err) => console.error(err));
+      .then((data) => {
+        setTasks(data);
+        if (data.length > 0) setHadTasksBefore(true);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setLoading(false);
+      });
   }, []);
-
-  useEffect(() => {
-    if (tasks.length === 0) {
-      setShowCelebration(true);
-    } else {
-      setShowCelebration(false);
-    }
-  }, [tasks]);
 
   const addTask = () => {
     if (task.trim() === "") return;
+
     fetch("http://localhost:5000/api/tasks", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({ text: task }),
     })
       .then((res) => res.json())
       .then((data) => {
         setTasks([...tasks, data]);
         setTask("");
+        setHadTasksBefore(true); // Mark that tasks were present
       })
       .catch((err) => console.error(err));
   };
@@ -40,19 +45,21 @@ function Home() {
   const deleteTask = (index) => {
     const taskToDelete = tasks[index];
     if (!taskToDelete || !taskToDelete._id) return;
+
     fetch(`http://localhost:5000/api/tasks/${taskToDelete._id}`, {
       method: "DELETE",
     })
       .then(() => {
-        const newTasks = tasks.filter((_, i) => i !== index);
-        setTasks(newTasks);
+        const updatedTasks = tasks.filter((_, i) => i !== index);
+        setTasks(updatedTasks);
       })
       .catch((err) => console.error(err));
   };
 
   return (
-    <div className={`app-container`}>
+    <div className="app-container">
       <h1>TaskSync – ToDo App</h1>
+
       <input
         type="text"
         placeholder="Enter a task"
@@ -61,11 +68,17 @@ function Home() {
       />
       <button onClick={addTask}>Add Task</button>
 
-      {showCelebration && (
-        <div className="hurray-banner">🎉 Hurray! All tasks completed! 🎉</div>
+      {loading ? (
+        <p>Loading...</p>
+      ) : tasks.length === 0 ? (
+        hadTasksBefore ? (
+          <div className="hurray-banner">🎉 Hurray! All tasks completed! 🎉</div>
+        ) : (
+          <div className="start-message">🌞 Let's start your day by adding some tasks!</div>
+        )
+      ) : (
+        <TaskList tasks={tasks} deleteTask={deleteTask} />
       )}
-
-      <TaskList tasks={tasks} deleteTask={deleteTask} />
     </div>
   );
 }
