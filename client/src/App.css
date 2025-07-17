@@ -159,7 +159,7 @@ li button:hover {
 .restart-btn {
   padding: 10px 16px;
   font-size: 16px;
-  background-color: #f44336;
+  background-color: #57b189;
   color: white;
   border: none;
   border-radius: 6px;
@@ -167,5 +167,5 @@ li button:hover {
 }
 
 .restart-btn:hover {
-  background-color: #d32f2f;
+  background-color: #2f9fd3;
 }
