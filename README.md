@@ -76,6 +76,6 @@ tasksync-app/
 👤 Developed By
 Lahar Solanki
 💼 Engineering in IT
-🔗 GitHub: github.com/Laharsolanki
-🔗 LinkedIn: linkedin.com/in/laharsolanki
+🔗 GitHub: https://github.com/Laharsolanki
+🔗 LinkedIn: https://in.linkedin.com/in/lahar-solanki-b04a2028b
 ```
