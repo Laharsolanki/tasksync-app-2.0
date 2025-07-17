@@ -66,7 +66,7 @@ li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   transition: transform 0.2s ease;
 }
 
@@ -91,12 +91,6 @@ li button {
 
 li button:hover {
   background-color: #b92d39;
-}
-
-.app-container {
-  min-height: 100vh;
-  padding: 2rem;
-  transition: all 0.3s ease;
 }
 
 .hurray-banner {
@@ -130,14 +124,28 @@ li button:hover {
   }
 }
 
+.task-list {
+  list-style: none;
+  padding: 0;
+}
 
-/* .info-banner {
-  margin-top: 20px;
-  padding: 15px;
-  background-color: #e7f3fe;
-  color: #31708f;
-  border: 2px solid #bce8f1;
-  border-radius: 8px;
-  font-size: 1.3rem;
-  animation: popIn 0.5s ease-in-out;
-} */
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.task-item.completed span {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.task-item:hover {
+  background-color: #f4f4f4;
+}

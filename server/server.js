@@ -7,42 +7,37 @@ const Task = require("./models/task");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI)
+// ✅ Connect to MongoDB
+mongoose
+  .connect(process.env.MONGODB_URI)
   .then(() => console.log("✅ Connected to MongoDB Atlas"))
-  .catch(err => console.error("❌ MongoDB connection error:", err));
+  .catch((err) => console.error("❌ MongoDB connection error:", err));
 
-// Get all tasks
+// 🟡 Get all tasks
 app.get("/api/tasks", async (req, res) => {
   try {
-    const tasks = await Task.find(); // Fetch all tasks from MongoDB
+    const tasks = await Task.find();
     res.json(tasks);
   } catch (error) {
-    console.error(error);
     res.status(500).json({ error: "Server error" });
   }
 });
 
-
-
-// Create a new task
+// 🟢 Add a new task
 app.post("/api/tasks", async (req, res) => {
   try {
-    const newTask = new Task({
-      text: req.body.text,
-    });
-    const savedTask = await newTask.save();
-    res.json(savedTask);
+    const newTask = new Task({ text: req.body.text });
+    const saved = await newTask.save();
+    res.json(saved);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
 
-// Delete a task
+// 🔴 Delete a task
 app.delete("/api/tasks/:id", async (req, res) => {
   try {
     await Task.findByIdAndDelete(req.params.id);
@@ -52,7 +47,20 @@ app.delete("/api/tasks/:id", async (req, res) => {
   }
 });
 
+// 🟢 Toggle task completion
+app.patch("/api/tasks/:id", async (req, res) => {
+  try {
+    const updatedTask = await Task.findByIdAndUpdate(
+      req.params.id,
+      { completed: req.body.completed },
+      { new: true }
+    );
+    res.json(updatedTask);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
 app.listen(PORT, () => {
-  console.log(`Server started on http://localhost:${PORT}`);
+  console.log(`🚀 Server running at http://localhost:${PORT}`);
 });
