@@ -58,7 +58,7 @@ cp .env.example .env
 
 # Start the development server
 npm run dev
-```
+
 
 📂 Project Structure
 
@@ -78,5 +78,4 @@ Lahar Solanki
 💼 Engineering in IT
 🔗 GitHub: github.com/Laharsolanki
 🔗 LinkedIn: linkedin.com/in/laharsolanki
-
-⭐️ If you found this useful, feel free to star the repo!
+```
