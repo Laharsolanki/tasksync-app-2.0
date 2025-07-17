@@ -21,11 +21,11 @@
 
 - 📋 Add, delete, and manage daily tasks
 - ✅ Mark tasks as completed using a checkbox
-- 🎨 Select themes and persist user preferences
 - 🗂️ Separate completed and pending task sections
 - 🖱️ Right-click on task to delete via custom context menu
 - 💾 MongoDB Atlas for persistent storage
-- 📱 Fully responsive design
+- 🔄 Restart Day: Clears all tasks after completion and starts fresh
+
 
 ---
 
