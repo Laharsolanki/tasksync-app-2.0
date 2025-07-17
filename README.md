@@ -1,132 +1,95 @@
-# 📝 TaskSync – ToDo App
+# ✅ TaskSync – Smart Task Manager App
 
-TaskSync is a responsive and interactive ToDo application built using the MERN stack (MongoDB, Express, React, Node.js). It helps users manage daily tasks with real-time updates, theme customization, and a fun "Hurray!" animation when all tasks are completed.
+**TaskSync** is a modern, themeable, full-stack MERN task management app that helps users stay productive and organized in a clean and responsive UI.
 
-**🌐 Live App:**  
-🔗 [Visit TaskSync](https://tasksync-app-laharsolankis-projects.vercel.app)
-
----
-
-## 📦 Tech Stack
-
-- **Frontend:** React, CSS  
-- **Backend:** Node.js, Express.js  
-- **Database:** MongoDB Atlas  
-- **Deployment:** Railway (Backend) + Vercel (Frontend)
+> 🎯 Built from scratch using the MERN stack  
+> 🖌️ User themes stored in localStorage  
+> ☁️ Backend with MongoDB Atlas  
+> 🚀 Fully deployed frontend and backend
 
 ---
 
-## 🚀 Features
+## 🔥 Live Preview
 
-- 📋 Add, delete, and list tasks in real-time  
-- 🎨 Customizable themes (Light, Dark, Blue)  
-- 🎉 Celebratory animation ("Hurray!") when all tasks are completed  
-- 🕹️ Data persistence using MongoDB  
-- 🔒 LocalStorage theme preference (theme remains consistent across pages)  
-- 📱 Fully responsive design  
+- 🔗 Frontend: [TaskSync on Vercel](https://tasksync-app-laharsolankis-projects.vercel.app/)
+- 🧠 Backend: [TaskSync API on Railway](https://adaptable-gentleness-production.up.railway.app/api/tasks)
+
 
 ---
 
-## 🛠️ Installation & Setup (for local development)
+## ✨ Features
 
-### 1. Clone the repository
+- 📋 Add, delete, and manage daily tasks
+- ✅ Mark tasks as completed using a checkbox
+- 🗂️ Separate completed and pending task sections
+- 🖱️ Right-click on task to delete via custom context menu
+- 💾 MongoDB Atlas for persistent storage
+- 🔄 Restart Day: Clears all tasks after completion and starts fresh
+
+
+---
+
+## 🧱 Tech Stack
+
+| Tech        | Usage             |
+|-------------|------------------|
+| React.js    | Frontend UI      |
+| Node.js     | Backend runtime  |
+| Express.js  | REST API         |
+| MongoDB     | Cloud database   |
+| CSS         | Styling          |
+| Railway     | Backend hosting  |
+| Vercel      | Frontend hosting |
+
+---
+
+## 🛠️ Getting Started Locally
 
 ```bash
-git clone https://github.com/Laharsolanki/tasksync-app.git
-cd tasksync-app
-```
+# Clone the repo
+git clone https://github.com/Laharsolanki/tasksync.git
+cd tasksync
 
-### 2. Setup backend (inside `/server`)
-
-```bash
-cd server
+# Install dependencies
 npm install
-```
 
-Create a `.env` file in the server folder with:
+# Set up environment variables
+cp .env.example .env
+# Add your MongoDB URI in .env
 
-```env
-MONGODB_URI=your_mongodb_connection_string
-```
+# Run the app
+npm run dev
+📂 Project Structure
+bash
+Copy
+Edit
+tasksync/
+├── client/             # React frontend
+├── server/             # Node.js/Express backend
+├── models/task.js      # MongoDB schema
+├── routes/taskRoutes.js
+├── pages/              # Home, About, NotFound
+├── public/
+└── README.md
+📸 Screenshots
+Theme	View
+Light Theme	✅ All tasks completed animation
+Dark Theme	✅ Task strikethrough and check
+Fun Theme	✅ Custom background color
 
-Start backend:
+Add screenshots here using:
+![Theme Screenshot](./screenshots/theme-light.png)
 
-```bash
-npm start
-```
+🎯 Future Improvements
+🔔 Add task reminders/notifications
 
-### 3. Setup frontend (inside `/client`)
+📱 Mobile app version (React Native)
 
-```bash
-cd ../client
-npm install
-npm start
-```
+👥 User authentication (login/signup)
 
----
+📊 Analytics dashboard for task stats
 
-## 🌍 Deployment
-
-### 🔧 Backend (Railway)
-
-- Deploy your `server/` directory on Railway  
-- Set the root directory to `server`  
-- Add your environment variable:  
-
-```env
-MONGODB_URI=your_mongo_uri
-```
-
-### 💻 Frontend (Vercel)
-
-- Deploy the `client/` directory on Vercel  
-- Build command: `npm run build`  
-- Output directory: `build`  
-- Root directory: `client`  
-
----
-
-## 📁 Project Structure
-
-```
-tasksync-app/
-│
-├── client/         # React frontend
-│   └── src/
-│       ├── pages/
-│       │   └── Home.js
-│       │   └── About.js
-│       └── components/
-│           └── TaskList.js
-│
-├── server/         # Node + Express backend
-│   └── models/
-│   └── routes/
-│   └── index.js
-│
-├── .env            # Environment config (Mongo URI)
-├── README.md
-```
-
----
-
-## 🙌 Acknowledgements
-
-Special thanks to:  
-- MongoDB Atlas for cloud database  
-- Railway & Vercel for seamless hosting  
-- React community for great libraries & documentation  
-
----
-
-## 📬 Contact
-
-👤 **Lahar Solanki**  
-📧 laharsolanki1107@gmail.com
-
----
-
-## 📅 Milestones
-
-✅ Day 1–7: Completed all core features  
-✅ Day 8: 🎉 Final polish, animations, themes, deployment, and README
+🧑‍💻 Developed By
+Lahar Solanki
+💼 Engineering in IT
+📬 GitHub • LinkedIn
