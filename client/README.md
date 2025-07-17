@@ -1,70 +1,95 @@
-# Getting Started with Create React App
+# ✅ TaskSync – Smart Task Manager App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**TaskSync** is a modern, themeable, full-stack MERN task management app that helps users stay productive and organized in a clean and responsive UI.
 
-## Available Scripts
+> 🎯 Built from scratch using the MERN stack  
+> 🖌️ User themes stored in localStorage  
+> ☁️ Backend with MongoDB Atlas  
+> 🚀 Fully deployed frontend and backend
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## 🔥 Live Preview
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- 🔗 Frontend: [TaskSync on Vercel](https://tasksync-app-laharsolankis-projects.vercel.app/)
+- 🧠 Backend: [TaskSync API on Railway](https://adaptable-gentleness-production.up.railway.app/api/tasks)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## ✨ Features
 
-### `npm run build`
+- 📋 Add, delete, and manage daily tasks
+- ✅ Mark tasks as completed using a checkbox
+- 🎨 Select themes and persist user preferences
+- 🗂️ Separate completed and pending task sections
+- 🖱️ Right-click on task to delete via custom context menu
+- 💾 MongoDB Atlas for persistent storage
+- 📱 Fully responsive design
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🧱 Tech Stack
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+| Tech        | Usage             |
+|-------------|------------------|
+| React.js    | Frontend UI      |
+| Node.js     | Backend runtime  |
+| Express.js  | REST API         |
+| MongoDB     | Cloud database   |
+| CSS         | Styling          |
+| Railway     | Backend hosting  |
+| Vercel      | Frontend hosting |
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🛠️ Getting Started Locally
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+# Clone the repo
+git clone https://github.com/Laharsolanki/tasksync.git
+cd tasksync
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+# Install dependencies
+npm install
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+# Set up environment variables
+cp .env.example .env
+# Add your MongoDB URI in .env
 
-## Learn More
+# Run the app
+npm run dev
+📂 Project Structure
+bash
+Copy
+Edit
+tasksync/
+├── client/             # React frontend
+├── server/             # Node.js/Express backend
+├── models/task.js      # MongoDB schema
+├── routes/taskRoutes.js
+├── pages/              # Home, About, NotFound
+├── public/
+└── README.md
+📸 Screenshots
+Theme	View
+Light Theme	✅ All tasks completed animation
+Dark Theme	✅ Task strikethrough and check
+Fun Theme	✅ Custom background color
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Add screenshots here using:
+![Theme Screenshot](./screenshots/theme-light.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+🎯 Future Improvements
+🔔 Add task reminders/notifications
 
-### Code Splitting
+📱 Mobile app version (React Native)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+👥 User authentication (login/signup)
 
-### Analyzing the Bundle Size
+📊 Analytics dashboard for task stats
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+🧑‍💻 Developed By
+Lahar Solanki
+💼 Engineering in IT
+📬 GitHub • LinkedIn

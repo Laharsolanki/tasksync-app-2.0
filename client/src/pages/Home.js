@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import TaskList from "../components/TaskList";
 import "../App.css";
+import axios from "axios";
 
 function Home() {
   const [task, setTask] = useState("");
@@ -42,41 +43,56 @@ function Home() {
       .catch((err) => console.error(err));
   };
 
-  const deleteTask = (index) => {
-    const taskToDelete = tasks[index];
-    if (!taskToDelete || !taskToDelete._id) return;
-
-    fetch(`https://adaptable-gentleness-production.up.railway.app/api/tasks/${taskToDelete._id}`, {
-      method: "DELETE",
-    })
+  const deleteTask = (taskId) => {
+    fetch(
+      `https://adaptable-gentleness-production.up.railway.app/api/tasks/${taskId}`,
+      {
+        method: "DELETE",
+      }
+    )
       .then(() => {
-        const updatedTasks = tasks.filter((_, i) => i !== index);
+        const updatedTasks = tasks.filter((task) => task._id !== taskId);
         setTasks(updatedTasks);
       })
       .catch((err) => console.error(err));
   };
 
-  const toggleTaskCompletion = (index) => {
-    const task = tasks[index];
-    if (!task || !task._id) return;
+  const toggleTaskCompletion = (taskId) => {
+    const task = tasks.find((t) => t._id === taskId);
+    if (!task) return;
 
     const updatedCompletion = !task.completed;
 
-    fetch(`https://adaptable-gentleness-production.up.railway.app/api/tasks/${task._id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ completed: updatedCompletion }),
-    })
+    fetch(
+      `https://adaptable-gentleness-production.up.railway.app/api/tasks/${taskId}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ completed: updatedCompletion }),
+      }
+    )
       .then((res) => res.json())
       .then((updatedTask) => {
-        const updatedTasks = tasks.map((t, i) =>
-          i === index ? { ...t, completed: updatedTask.completed } : t
+        const updatedTasks = tasks.map((t) =>
+          t._id === taskId ? { ...t, completed: updatedTask.completed } : t
         );
         setTasks(updatedTasks);
       })
       .catch((err) => console.error(err));
+  };
+
+  const restartDay = async () => {
+    try {
+      await axios.delete(
+        "https://adaptable-gentleness-production.up.railway.app/api/tasks/clear-all"
+      );
+      setTasks([]);
+      setHadTasksBefore(false);
+    } catch (error) {
+      console.error("Error clearing tasks:", error);
+    }
   };
 
   const incompleteTasks = tasks.filter((task) => !task.completed);
@@ -91,7 +107,11 @@ function Home() {
         placeholder="Enter a task"
         value={task}
         onChange={(e) => setTask(e.target.value)}
-        onKeyDown={(e) => e.key === "Enter" && addTask()}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            addTask();
+          }
+        }}
       />
       <button onClick={addTask}>Add Task</button>
 
@@ -99,7 +119,9 @@ function Home() {
         <p>Loading...</p>
       ) : tasks.length === 0 ? (
         hadTasksBefore ? (
-          <div className="hurray-banner">🎉 Hurray! All tasks completed! 🎉</div>
+          <div className="hurray-banner">
+            🎉 Hurray! All tasks completed! 🎉
+          </div>
         ) : (
           <div className="start-message">
             🌞 Let's start your day by adding some tasks!
@@ -128,6 +150,20 @@ function Home() {
               />
             </>
           )}
+
+          {completedTasks.length > 0 &&
+            completedTasks.length === tasks.length && (
+              <>
+                <div className="hurray-banner">
+                  🎉 Hurray! All tasks completed! 🎉
+                </div>
+                <div className="restart-wrapper">
+                  <button className="restart-btn" onClick={restartDay}>
+                    🔄 Restart Day
+                  </button>
+                </div>
+              </>
+            )}
         </>
       )}
     </div>

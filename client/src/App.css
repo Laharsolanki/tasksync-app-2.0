@@ -97,11 +97,11 @@ li button:hover {
   margin-top: 20px;
   padding: 15px;
   background-color: #d4edda;
-  color: #155724;
-  border: 2px solid #c3e6cb;
+  border: 2px dashed #28a745;
   border-radius: 8px;
-  font-size: 1.4rem;
-  animation: popIn 0.6s ease-out;
+  font-size: 1.2rem;
+  color: #155724;
+  text-align: center;
 }
 
 .start-message {
@@ -148,4 +148,24 @@ li button:hover {
 
 .task-item:hover {
   background-color: #f4f4f4;
+}
+
+.restart-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.restart-btn {
+  padding: 10px 16px;
+  font-size: 16px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.restart-btn:hover {
+  background-color: #d32f2f;
 }

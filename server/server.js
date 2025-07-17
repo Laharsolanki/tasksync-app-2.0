@@ -37,15 +37,15 @@ app.post("/api/tasks", async (req, res) => {
   }
 });
 
-// 🔴 Delete a task
-app.delete("/api/tasks/:id", async (req, res) => {
+app.delete("/api/tasks/clear-all", async (req, res) => {
   try {
-    await Task.findByIdAndDelete(req.params.id);
-    res.json({ message: "Task deleted" });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+    await Task.deleteMany({});
+    res.status(200).json({ message: "All tasks cleared" });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to clear tasks" });
   }
 });
+
 
 // 🟢 Toggle task completion
 app.patch("/api/tasks/:id", async (req, res) => {

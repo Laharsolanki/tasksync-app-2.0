@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 
 function TaskList({ tasks, deleteTask, toggleTaskCompletion }) {
-  const [contextMenu, setContextMenu] = useState({ visible: false, x: 0, y: 0, taskIndex: null });
+  const [contextMenu, setContextMenu] = useState({ visible: false, x: 0, y: 0, taskId: null });
 
-  const handleRightClick = (e, index) => {
+  const handleRightClick = (e, taskId) => {
     e.preventDefault();
     setContextMenu({
       visible: true,
       x: e.pageX,
       y: e.pageY,
-      taskIndex: index,
+      taskId: taskId,
     });
   };
 
   const handleDelete = () => {
-    if (contextMenu.taskIndex !== null) {
-      deleteTask(contextMenu.taskIndex);
+    if (contextMenu.taskId) {
+      deleteTask(contextMenu.taskId);
       setContextMenu({ ...contextMenu, visible: false });
     }
   };
@@ -29,10 +29,10 @@ function TaskList({ tasks, deleteTask, toggleTaskCompletion }) {
   return (
     <div onClick={closeContextMenu}>
       <ul>
-        {tasks.map((task, index) => (
+        {tasks.map((task) => (
           <li
-            key={index}
-            onContextMenu={(e) => handleRightClick(e, index)}
+            key={task._id}
+            onContextMenu={(e) => handleRightClick(e, task._id)}
             style={{
               textDecoration: task.completed ? "line-through" : "none",
               cursor: "pointer",
@@ -41,7 +41,7 @@ function TaskList({ tasks, deleteTask, toggleTaskCompletion }) {
             <input
               type="checkbox"
               checked={task.completed}
-              onChange={() => toggleTaskCompletion(index)}
+              onChange={() => toggleTaskCompletion(task._id)}
               style={{ marginRight: "8px" }}
             />
             {task.text}
@@ -49,7 +49,6 @@ function TaskList({ tasks, deleteTask, toggleTaskCompletion }) {
         ))}
       </ul>
 
-      {/* ✅ Custom Context Menu */}
       {contextMenu.visible && (
         <div
           style={{
@@ -70,5 +69,4 @@ function TaskList({ tasks, deleteTask, toggleTaskCompletion }) {
     </div>
   );
 }
-
 export default TaskList;
