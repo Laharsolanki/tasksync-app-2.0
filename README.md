@@ -1,45 +1,44 @@
 # ✅ TaskSync – Smart Task Manager App
 
-**TaskSync** is a modern, themeable, full-stack MERN task management app that helps users stay productive and organized in a clean and responsive UI.
+**TaskSync** is a modern, themeable, full-stack MERN task management app designed to help users stay organized and productive with a clean, responsive interface.
 
 > 🎯 Built from scratch using the MERN stack  
-> 🖌️ User themes stored in localStorage  
-> ☁️ Backend with MongoDB Atlas  
+> 🖌️ Theme selection stored in `localStorage`  
+> ☁️ Cloud-based database with MongoDB Atlas  
 > 🚀 Fully deployed frontend and backend
 
 ---
 
 ## 🔥 Live Preview
 
-- 🔗 Frontend: [TaskSync on Vercel](https://tasksync-app-laharsolankis-projects.vercel.app/)
-- 🧠 Backend: [TaskSync API on Railway](https://adaptable-gentleness-production.up.railway.app/api/tasks)
-
+- 🌐 **Visit TaskSync App**: [tasksync-app-laharsolankis-projects.vercel.app](https://tasksync-app-laharsolankis-projects.vercel.app/)
+- 🔗 **Backend API**: [Railway API Endpoint](https://adaptable-gentleness-production.up.railway.app/api/tasks)
 
 ---
 
 ## ✨ Features
 
-- 📋 Add, delete, and manage daily tasks
+- 📝 Add, delete, and manage tasks with ease
 - ✅ Mark tasks as completed using a checkbox
-- 🗂️ Separate completed and pending task sections
-- 🖱️ Right-click on task to delete via custom context menu
-- 💾 MongoDB Atlas for persistent storage
-- 🔄 Restart Day: Clears all tasks after completion and starts fresh
-
+- 📊 Tasks separated into "Pending" and "Completed" sections
+- 🖱️ Right-click to delete tasks via custom context menu
+- 🎨 Choose from Light, Dark, and Fun themes
+- 🔄 "Restart Day" button to clear all tasks and start fresh
+- 💾 Data stored persistently in MongoDB Atlas
 
 ---
 
 ## 🧱 Tech Stack
 
-| Tech        | Usage             |
-|-------------|------------------|
-| React.js    | Frontend UI      |
-| Node.js     | Backend runtime  |
-| Express.js  | REST API         |
-| MongoDB     | Cloud database   |
-| CSS         | Styling          |
-| Railway     | Backend hosting  |
-| Vercel      | Frontend hosting |
+| Technology   | Purpose            |
+|--------------|--------------------|
+| React.js     | Frontend UI        |
+| Node.js      | Backend runtime    |
+| Express.js   | RESTful API        |
+| MongoDB      | Database (cloud)   |
+| Railway      | Backend hosting    |
+| Vercel       | Frontend hosting   |
+| CSS          | Styling / Themes   |
 
 ---
 
@@ -47,8 +46,8 @@
 
 ```bash
 # Clone the repo
-git clone https://github.com/Laharsolanki/tasksync.git
-cd tasksync
+git clone https://github.com/Laharsolanki/tasksync-app.git
+cd tasksync-app
 
 # Install dependencies
 npm install
@@ -57,39 +56,27 @@ npm install
 cp .env.example .env
 # Add your MongoDB URI in .env
 
-# Run the app
+# Start the development server
 npm run dev
+
+
 📂 Project Structure
-bash
-Copy
-Edit
-tasksync/
+
+tasksync-app/
 ├── client/             # React frontend
+│   ├── pages/          # Home, About, NotFound
+│   └── components/     # Reusable UI components
 ├── server/             # Node.js/Express backend
-├── models/task.js      # MongoDB schema
-├── routes/taskRoutes.js
-├── pages/              # Home, About, NotFound
-├── public/
+│   ├── models/task.js  # Mongoose schema
+│   └── routes/         # Task API routes
+├── public/             # Static assets
 └── README.md
-📸 Screenshots
-Theme	View
-Light Theme	✅ All tasks completed animation
-Dark Theme	✅ Task strikethrough and check
-Fun Theme	✅ Custom background color
 
-Add screenshots here using:
-![Theme Screenshot](./screenshots/theme-light.png)
 
-🎯 Future Improvements
-🔔 Add task reminders/notifications
-
-📱 Mobile app version (React Native)
-
-👥 User authentication (login/signup)
-
-📊 Analytics dashboard for task stats
-
-🧑‍💻 Developed By
+👤 Developed By
 Lahar Solanki
 💼 Engineering in IT
-📬 GitHub • LinkedIn
+🔗 GitHub: github.com/Laharsolanki
+🔗 LinkedIn: linkedin.com/in/laharsolanki
+
+⭐️ If you found this useful, feel free to star the repo!
