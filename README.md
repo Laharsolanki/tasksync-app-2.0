@@ -56,16 +56,34 @@ Open your browser at http://localhost:3000
 
 ## 📁 Project Structure
 
-tasksync-app/
-├── client/             # React frontend
-│   ├── pages/          # Home, About, NotFound
-│   ├── utils/          # api.js
-│   └── components/     # UI Components
-├── server/             # Node.js/Express backend
-│   ├── models/task.js  # Mongoose schema
-│   └── routes/         # Task API routes
-├── public/             # Static assets
-└── README.md
+tasksync-app-2.0/
+│
+├─ client/ # React frontend
+│ ├─ src/
+│ │ ├─ components/ # Reusable UI components
+│ │ │ ├─ TaskList.js
+│ │ │ ├─ ThemeSelector.js
+│ │ │ └─ HurrayPopup.js
+│ │ ├─ pages/ # Main pages
+│ │ │ └─ Home.js
+│ │ ├─ utils/ # Helper functions, API calls
+│ │ │ └─ api.js
+│ │ ├─ App.css # Global CSS
+│ │ └─ index.js # React entry point
+│ ├─ public/ # Static files (images, icons, index.html)
+│ └─ package.json
+│
+├─ server/ # Node.js / Express backend
+│ ├─ models/ # Mongoose schemas
+│ │ └─ task.js
+│ ├─ routes/ # API routes
+│ │ └─ taskRoutes.js
+│ ├─ server.js # Express server entry point
+│ └─ package.json
+│
+├─ .gitignore
+├─ README.md
+└─ package.json (optional root for full-stack setup)
 
 
 👤 Developed By
