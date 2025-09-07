@@ -19,13 +19,6 @@ TaskSync App 2.0 is a modern, themeable task management web app built with React
 
 ---
 
-## 🎨 Screenshots
-
-![App Screenshot 1](./screenshots/screenshot1.png)
-![App Screenshot 2](./screenshots/screenshot2.png)
-
----
-
 ## 🛠️ Technologies Used
 
 - **Frontend:** React, HTML, CSS
@@ -51,7 +44,7 @@ npm start
 
 Open your browser at http://localhost:3000
 
-💡 Usage
+## 💡 Usage
 - Enter a task title (and optional description).
 - Press Enter or click Add to create a task.
 - Check the box to mark a task as completed. 
@@ -61,7 +54,7 @@ Open your browser at http://localhost:3000
 - Change the app theme using the Theme dropdown.
 
 
-📁 Project Structure
+## 📁 Project Structure
 
 tasksync-app/
 ├── client/             # React frontend
