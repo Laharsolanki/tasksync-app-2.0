@@ -1,173 +1,202 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import TaskList from "../components/TaskList";
-import "../App.css";
-import axios from "axios";
+import ThemeSelector from "../components/ThemeSelector";
+import * as api from "../utils/api";
+import HurrayPopup from "../components/HurrayPopUp";
+import { toast } from "react-toastify";
+import { useRef } from "react";
 
-function Home() {
-  const [task, setTask] = useState("");
+export default function Home() {
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [hadTasksBefore, setHadTasksBefore] = useState(false);
+  const [theme, setTheme] = useState(
+    localStorage.getItem("tasksync-theme") || "light"
+  );
+  const [showHurray, setShowHurray] = useState(false);
+  const prevAllDone = useRef(false);
+  const prevTaskCount = useRef(0);
 
   useEffect(() => {
-    setLoading(true);
-    fetch("https://adaptable-gentleness-production.up.railway.app/api/tasks")
-      .then((res) => res.json())
-      .then((data) => {
-        setTasks(data);
-        if (data.length > 0) setHadTasksBefore(true);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error(err);
-        setLoading(false);
-      });
+    localStorage.setItem("tasksync-theme", theme);
+    applyTheme(theme);
+  }, [theme]);
+
+  useEffect(() => {
+    fetchTasks();
   }, []);
 
-  const addTask = () => {
-    if (task.trim() === "") return;
+  useEffect(() => {
+    const allDone = tasks.length > 0 && tasks.every((t) => t.completed);
 
-    fetch("https://adaptable-gentleness-production.up.railway.app/api/tasks", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ text: task }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setTasks([...tasks, data]);
-        setTask("");
-        setHadTasksBefore(true);
-      })
-      .catch((err) => console.error(err));
-  };
+    // Only trigger if transitioning from not-all-done → all-done
+    // AND task count hasn't decreased (so it's not from deletion)
+    if (
+      allDone &&
+      !prevAllDone.current &&
+      tasks.length >= prevTaskCount.current
+    ) {
+      setShowHurray(true);
 
-  const deleteTask = (taskId) => {
-    fetch(
-      `https://adaptable-gentleness-production.up.railway.app/api/tasks/${taskId}`,
-      {
-        method: "DELETE",
-      }
-    )
-      .then(() => {
-        const updatedTasks = tasks.filter((task) => task._id !== taskId);
-        setTasks(updatedTasks);
-      })
-      .catch((err) => console.error(err));
-  };
+      const timer = setTimeout(() => setShowHurray(false), 2500);
+      return () => clearTimeout(timer);
+    }
 
-  const toggleTaskCompletion = (taskId) => {
-    const task = tasks.find((t) => t._id === taskId);
-    if (!task) return;
+    prevAllDone.current = allDone;
+    prevTaskCount.current = tasks.length;
+  }, [tasks]);
 
-    const updatedCompletion = !task.completed;
-
-    fetch(
-      `https://adaptable-gentleness-production.up.railway.app/api/tasks/${taskId}`,
-      {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ completed: updatedCompletion }),
-      }
-    )
-      .then((res) => res.json())
-      .then((updatedTask) => {
-        const updatedTasks = tasks.map((t) =>
-          t._id === taskId ? { ...t, completed: updatedTask.completed } : t
-        );
-        setTasks(updatedTasks);
-      })
-      .catch((err) => console.error(err));
-  };
-
-  const restartDay = async () => {
-    try {
-      await axios.delete(
-        "https://adaptable-gentleness-production.up.railway.app/api/tasks/clear-all"
-      );
-      setTasks([]);
-      setHadTasksBefore(false);
-    } catch (error) {
-      console.error("Error clearing tasks:", error);
+  const applyTheme = (t) => {
+    if (t === "dark") {
+      document.documentElement.style.setProperty("--bg", "#0f172a");
+      document.documentElement.style.setProperty("--card", "#071129");
+      document.documentElement.style.setProperty("--text", "#e6eef8");
+      document.documentElement.style.setProperty("--muted", "#9aa6b2");
+      document.documentElement.style.setProperty("--accent", "#ef4444");
+    } else if (t === "blue") {
+      document.documentElement.style.setProperty("--bg", "#eef2ff");
+      document.documentElement.style.setProperty("--card", "#ffffff");
+      document.documentElement.style.setProperty("--text", "#0f172a");
+      document.documentElement.style.setProperty("--muted", "#64748b");
+      document.documentElement.style.setProperty("--accent", "#3b82f6");
+    } else {
+      // light
+      document.documentElement.style.setProperty("--bg", "#f3f4f6");
+      document.documentElement.style.setProperty("--card", "#ffffff");
+      document.documentElement.style.setProperty("--text", "#111827");
+      document.documentElement.style.setProperty("--muted", "#6b7280");
+      document.documentElement.style.setProperty("--accent", "#6366f1");
     }
   };
 
-  const incompleteTasks = tasks.filter((task) => !task.completed);
-  const completedTasks = tasks.filter((task) => task.completed);
+  const fetchTasks = async () => {
+    setLoading(true);
+    try {
+      const res = await api.getTasks();
+      setTasks(res.data);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const addTask = async () => {
+    if (!title.trim()) return;
+    try {
+      const res = await api.createTask({
+        title: title.trim(),
+        description: description.trim(),
+      });
+      setTasks((prev) => [res.data, ...prev]);
+      setTitle("");
+      setDescription("");
+      toast.success("Task added successfully!");
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to add task");
+    }
+  };
+
+  const toggleTask = async (task) => {
+    try {
+      const res = await api.updateTask(task._id, {
+        completed: !task.completed,
+      });
+      setTasks((prev) =>
+        prev.map((t) => (t._id === res.data._id ? res.data : t))
+      );
+      toast.info("Task updated!");
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const deleteTask = async (id) => {
+    if (!window.confirm("Delete this task?")) return;
+    try {
+      await api.deleteTask(id);
+      setTasks((prev) => prev.filter((t) => t._id !== id));
+      toast.error("Task deleted!");
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const clearAll = async () => {
+    if (!window.confirm("Clear ALL tasks?")) return;
+    try {
+      await api.clearAllTasks();
+      setTasks([]);
+      toast.error("All tasks cleared!");
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
-    <div className="app-container">
-      <h1>TaskSync – ToDo App</h1>
+    <div className="container">
+      {/* 🎉 Hurray animation */}
+      <HurrayPopup show={showHurray} />
 
-      <input
-        type="text"
-        placeholder="Enter a task"
-        value={task}
-        onChange={(e) => setTask(e.target.value)}
-        onKeyDown={(e) => {
-          if (e.key === "Enter") {
-            addTask();
-          }
-        }}
-      />
-      <button onClick={addTask}>Add Task</button>
+      <div className="header">
+        <h1>TaskSync</h1>
+        <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
+          <ThemeSelector theme={theme} setTheme={setTheme} />
+          <button onClick={fetchTasks}>Refresh</button>
+        </div>
+      </div>
 
-      {loading ? (
-        <p>Loading...</p>
-      ) : tasks.length === 0 ? (
-        hadTasksBefore ? (
-          <div className="hurray-banner">
-            🎉 Hurray! All tasks completed! 🎉
+      <div style={{ marginTop: 16 }}>
+        <div className="card">
+          <div className="input-row">
+            <input
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && addTask()}
+              placeholder="Task title"
+            />
+            <button onClick={addTask}>Add</button>
           </div>
-        ) : (
-          <div className="start-message">
-            🌞 Let's start your day by adding some tasks!
+
+          <div style={{ marginTop: 8 }}>
+            <textarea
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder="Description (optional)"
+              rows={3}
+              style={{ width: "100%", resize: "vertical", padding: "8px" }}
+            />
           </div>
-        )
-      ) : (
-        <>
-          {incompleteTasks.length > 0 && (
-            <>
-              <h2>📝 Tasks To Do</h2>
-              <TaskList
-                tasks={incompleteTasks}
-                deleteTask={deleteTask}
-                toggleTaskCompletion={toggleTaskCompletion}
-              />
-            </>
-          )}
+        </div>
 
-          {completedTasks.length > 0 && (
-            <>
-              <h2>✅ Completed Tasks</h2>
-              <TaskList
-                tasks={completedTasks}
-                deleteTask={deleteTask}
-                toggleTaskCompletion={toggleTaskCompletion}
-              />
-            </>
+        <div style={{ marginTop: 16 }}>
+          {loading ? (
+            <div className="card small">Loading...</div>
+          ) : (
+            <TaskList
+              tasks={tasks}
+              onToggle={toggleTask}
+              onDelete={deleteTask}
+            />
           )}
+        </div>
 
-          {completedTasks.length > 0 &&
-            completedTasks.length === tasks.length && (
-              <>
-                <div className="hurray-banner">
-                  🎉 Hurray! All tasks completed! 🎉
-                </div>
-                <div className="restart-wrapper">
-                  <button className="restart-btn" onClick={restartDay}>
-                    🔄 Restart Day
-                  </button>
-                </div>
-              </>
-            )}
-        </>
-      )}
+        <div
+          style={{
+            marginTop: 12,
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <div className="small">Total: {tasks.length}</div>
+          <div className="footer-actions">
+            <button onClick={clearAll}>Clear All</button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
-
-export default Home;

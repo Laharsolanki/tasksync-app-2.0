@@ -1,72 +1,39 @@
-import React, { useState } from "react";
+import React from "react";
 
-function TaskList({ tasks, deleteTask, toggleTaskCompletion }) {
-  const [contextMenu, setContextMenu] = useState({ visible: false, x: 0, y: 0, taskId: null });
-
-  const handleRightClick = (e, taskId) => {
-    e.preventDefault();
-    setContextMenu({
-      visible: true,
-      x: e.pageX,
-      y: e.pageY,
-      taskId: taskId,
-    });
-  };
-
-  const handleDelete = () => {
-    if (contextMenu.taskId) {
-      deleteTask(contextMenu.taskId);
-      setContextMenu({ ...contextMenu, visible: false });
-    }
-  };
-
-  const closeContextMenu = () => {
-    if (contextMenu.visible) {
-      setContextMenu({ ...contextMenu, visible: false });
-    }
-  };
-
+export default function TaskList({ tasks = [], onToggle, onDelete }) {
   return (
-    <div onClick={closeContextMenu}>
-      <ul>
-        {tasks.map((task) => (
-          <li
-            key={task._id}
-            onContextMenu={(e) => handleRightClick(e, task._id)}
-            style={{
-              textDecoration: task.completed ? "line-through" : "none",
-              cursor: "pointer",
-            }}
-          >
+    <div className="card">
+      {tasks.length === 0 && (
+        <div className="small">No tasks yet — add one above.</div>
+      )}
+      {tasks.map((task) => (
+        <div
+          key={task._id}
+          className={`task-item ${task.completed ? "completed" : ""}`}
+        >
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
             <input
               type="checkbox"
               checked={task.completed}
-              onChange={() => toggleTaskCompletion(task._id)}
-              style={{ marginRight: "8px" }}
+              onChange={() => onToggle(task)}
             />
-            {task.text}
-          </li>
-        ))}
-      </ul>
-
-      {contextMenu.visible && (
-        <div
-          style={{
-            position: "absolute",
-            top: contextMenu.y,
-            left: contextMenu.x,
-            backgroundColor: "#fff",
-            border: "1px solid #ccc",
-            padding: "8px",
-            borderRadius: "4px",
-            boxShadow: "0 2px 6px rgba(0,0,0,0.2)",
-            zIndex: 1000,
-          }}
-        >
-          <button onClick={handleDelete} style={{ cursor: "pointer" }}>🗑️ Delete</button>
+            <div>
+              <div className="title">{task.title}</div>
+              {task.description && (
+                <div className="small">{task.description}</div>
+              )}
+            </div>
+          </div>
+          <div>
+            <button
+              className="task-delete-btn"
+              onClick={() => onDelete(task._id)}
+            >
+              Delete
+            </button>
+          </div>
         </div>
-      )}
+      ))}
     </div>
   );
 }
-export default TaskList;
