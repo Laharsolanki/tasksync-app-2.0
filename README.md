@@ -19,6 +19,16 @@ TaskSync App 2.0 is a modern, themeable task management web app built with React
 
 ---
 
+## 🎨 Screenshots
+
+![Light Theme Screenshot](./screenshots/light.png)
+![Dark Theme Screenshot](./screenshots/dark.png)
+![Blue Theme Screenshot](./screenshots/blue.png)
+
+*(Replace the above placeholders with actual screenshots from your project)*
+
+---
+
 ## 🛠️ Technologies Used
 
 - **Frontend:** React, HTML, CSS
@@ -31,10 +41,11 @@ TaskSync App 2.0 is a modern, themeable task management web app built with React
 
 1. **Clone the repository:**
 
-   ```bash
-   git clone https://github.com/Laharsolanki/tasksync-app-2.0.git
-   cd tasksync-app-2.0
+```bash
+git clone https://github.com/Laharsolanki/tasksync-app-2.0.git
+cd tasksync-app-2.0
 
+```
 
 Install dependencies:
 npm install
@@ -44,50 +55,43 @@ npm start
 
 Open your browser at http://localhost:3000
 
-## 💡 Usage
-- Enter a task title (and optional description).
-- Press Enter or click Add to create a task.
-- Check the box to mark a task as completed. 
-- When all tasks are done, a Hurray animation pops up.
-- Delete individual tasks using the Delete button.
-- Clear all tasks using the Clear All button.
-- Change the app theme using the Theme dropdown.
 
 
-## 📁 Project Structure
-
+📁 Project Structure
+text
+Copy code
 tasksync-app-2.0/
-│
-├─ client/ # React frontend
-│ ├─ src/
-│ │ ├─ components/ # Reusable UI components
-│ │ │ ├─ TaskList.js
-│ │ │ ├─ ThemeSelector.js
-│ │ │ └─ HurrayPopup.js
-│ │ ├─ pages/ # Main pages
-│ │ │ └─ Home.js
-│ │ ├─ utils/ # Helper functions, API calls
-│ │ │ └─ api.js
-│ │ ├─ App.css # Global CSS
-│ │ └─ index.js # React entry point
-│ ├─ public/ # Static files (images, icons, index.html)
-│ └─ package.json
-│
-├─ server/ # Node.js / Express backend
-│ ├─ models/ # Mongoose schemas
-│ │ └─ task.js
-│ ├─ routes/ # API routes
-│ │ └─ taskRoutes.js
-│ ├─ server.js # Express server entry point
-│ └─ package.json
-│
+├─ client/                     # React frontend
+│  ├─ src/
+│  │  ├─ components/           # Reusable UI components
+│  │  │  ├─ TaskList.js
+│  │  │  ├─ ThemeSelector.js
+│  │  │  └─ HurrayPopup.js
+│  │  ├─ pages/                # Main pages
+│  │  │  └─ Home.js
+│  │  ├─ utils/                # Helper functions, API calls
+│  │  │  └─ api.js
+│  │  ├─ App.css               # Global CSS
+│  │  └─ index.js              # React entry point
+│  ├─ public/                  # Static files (images, icons, index.html)
+│  └─ package.json
+├─ server/                     # Node.js / Express backend
+│  ├─ models/                  # Mongoose schemas
+│  │  └─ task.js
+│  ├─ routes/                  # API routes
+│  │  └─ taskRoutes.js
+│  ├─ server.js                # Express server entry point
+│  └─ package.json
 ├─ .gitignore
 ├─ README.md
 └─ package.json (optional root for full-stack setup)
 
+---
 
 👤 Developed By
 Lahar Solanki
 💼 Engineering in IT
 🔗 GitHub: https://github.com/Laharsolanki
 🔗 LinkedIn: https://in.linkedin.com/in/lahar-solanki-b04a2028b
+
+---
