@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ✅ TaskSync – Smart Task Manager App
 
 **TaskSync** is a modern, themeable, full-stack MERN task management app designed to help users stay organized and productive with a clean, responsive interface.
@@ -79,3 +80,7 @@ Lahar Solanki
 🔗 GitHub: https://github.com/Laharsolanki
 🔗 LinkedIn: https://in.linkedin.com/in/lahar-solanki-b04a2028b
 ```
+=======
+# tasksync-app-2.0
+The old Tasksync was not working properly, so I created a new version of it by upgrading it to 2.0
+>>>>>>> 8440dc2a4531b62a7fdca00d3fece4be12b5ffd7
