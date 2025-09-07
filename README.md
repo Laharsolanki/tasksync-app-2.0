@@ -1,72 +1,73 @@
-<<<<<<< HEAD
-# ✅ TaskSync – Smart Task Manager App
+# ✅ TaskSync App 2.0 – Smart Task Manager
 
-**TaskSync** is a modern, themeable, full-stack MERN task management app designed to help users stay organized and productive with a clean, responsive interface.
-
-> 🎯 Built from scratch using the MERN stack  
-> 🖌️ Theme selection stored in `localStorage`  
-> ☁️ Cloud-based database with MongoDB Atlas  
-> 🚀 Fully deployed frontend and backend
+TaskSync App 2.0 is a modern, themeable task management web app built with React. It offers a clean, responsive interface with features like task completion animations, theme customization, and intuitive task management.
 
 ---
 
-## 🔥 Live Preview
+## 🚀 Features
 
-- 🌐 **Visit TaskSync App**: [tasksync-app-laharsolankis-projects.vercel.app](https://tasksync-app-laharsolankis-projects.vercel.app/)
-- 🔗 **Backend API**: [Railway API Endpoint](https://adaptable-gentleness-production.up.railway.app/api/tasks)
-
----
-
-## ✨ Features
-
-- 📝 Add, delete, and manage tasks with ease
-- ✅ Mark tasks as completed using a checkbox
-- 📊 Tasks separated into "Pending" and "Completed" sections
-- 🖱️ Right-click to delete tasks via custom context menu
-- 🎨 Choose from Light, Dark, and Fun themes
-- 🔄 "Restart Day" button to clear all tasks and start fresh
-- 💾 Data stored persistently in MongoDB Atlas
+- **Add Tasks:** Quickly add tasks with titles and optional descriptions.
+- **Press Enter to Add:** Type a task title and hit Enter to add instantly.
+- **Task Completion:** Mark tasks as completed with checkboxes.
+- **Hurray Animation:** Celebrate when all tasks are completed with a green success popup.
+- **Delete & Clear All:** Remove individual tasks or clear all tasks with intuitive buttons.
+- **Adjustable Description Area:** Multiline and resizable description input.
+- **Theme Support:** Switch between Light, Dark, and Blue themes.
+- **Interactive Buttons:** Smooth hover effects, theme-aware buttons for a professional look.
+- **Responsive UI:** Works well on desktop and mobile devices.
+- **Local Storage for Theme:** Retains the selected theme between sessions.
 
 ---
 
-## 🧱 Tech Stack
+## 🎨 Screenshots
 
-| Technology   | Purpose            |
-|--------------|--------------------|
-| React.js     | Frontend UI        |
-| Node.js      | Backend runtime    |
-| Express.js   | RESTful API        |
-| MongoDB      | Database (cloud)   |
-| Railway      | Backend hosting    |
-| Vercel       | Frontend hosting   |
-| CSS          | Styling / Themes   |
+![App Screenshot 1](./screenshots/screenshot1.png)
+![App Screenshot 2](./screenshots/screenshot2.png)
 
 ---
 
-## 🛠️ Getting Started Locally
+## 🛠️ Technologies Used
 
-```bash
-# Clone the repo
-git clone https://github.com/Laharsolanki/tasksync-app.git
-cd tasksync-app
+- **Frontend:** React, HTML, CSS
+- **State Management:** React useState & useEffect
+- **Animations:** Hurray popup for task completion
 
-# Install dependencies
+---
+
+## ⚡ How to Run Locally
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/Laharsolanki/tasksync-app-2.0.git
+   cd tasksync-app-2.0
+
+
+Install dependencies:
 npm install
 
-# Set up environment variables
-cp .env.example .env
-# Add your MongoDB URI in .env
+Start the development server:
+npm start
 
-# Start the development server
-npm run dev
+Open your browser at http://localhost:3000
+
+💡 Usage
+- Enter a task title (and optional description).
+- Press Enter or click Add to create a task.
+- Check the box to mark a task as completed. 
+- When all tasks are done, a Hurray animation pops up.
+- Delete individual tasks using the Delete button.
+- Clear all tasks using the Clear All button.
+- Change the app theme using the Theme dropdown.
 
 
-📂 Project Structure
+📁 Project Structure
 
 tasksync-app/
 ├── client/             # React frontend
 │   ├── pages/          # Home, About, NotFound
-│   └── components/     # Reusable UI components
+│   ├── utils/          # api.js
+│   └── components/     # UI Components
 ├── server/             # Node.js/Express backend
 │   ├── models/task.js  # Mongoose schema
 │   └── routes/         # Task API routes
@@ -79,8 +80,3 @@ Lahar Solanki
 💼 Engineering in IT
 🔗 GitHub: https://github.com/Laharsolanki
 🔗 LinkedIn: https://in.linkedin.com/in/lahar-solanki-b04a2028b
-```
-=======
-# tasksync-app-2.0
-The old Tasksync was not working properly, so I created a new version of it by upgrading it to 2.0
->>>>>>> 8440dc2a4531b62a7fdca00d3fece4be12b5ffd7
