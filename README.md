@@ -44,16 +44,21 @@ TaskSync App 2.0 is a modern, themeable task management web app built with React
 ```bash
 git clone https://github.com/Laharsolanki/tasksync-app-2.0.git
 cd tasksync-app-2.0
-
 ```
 
-Install dependencies:
+
+2. **Install Dependencies:**
+
+```bash
 npm install
+```
 
-Start the development server:
+3. **Start the development server:**
+
+```bash
 npm start
+```
 
-Open your browser at http://localhost:3000
 
 
 ```
