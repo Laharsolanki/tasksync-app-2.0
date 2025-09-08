@@ -17,15 +17,6 @@ TaskSync App 2.0 is a modern, themeable task management web app built with React
 - **Responsive UI:** Works well on desktop and mobile devices.
 - **Local Storage for Theme:** Retains the selected theme between sessions.
 
----
-
-## 🎨 Screenshots
-
-![Light Theme Screenshot](./screenshots/light.png)
-![Dark Theme Screenshot](./screenshots/dark.png)
-![Blue Theme Screenshot](./screenshots/blue.png)
-
-*(Replace the above placeholders with actual screenshots from your project)*
 
 ---
 
