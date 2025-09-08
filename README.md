@@ -56,7 +56,7 @@ npm start
 Open your browser at http://localhost:3000
 
 
-
+```
 📁 Project Structure
 text
 Copy code
@@ -95,3 +95,4 @@ Lahar Solanki
 🔗 LinkedIn: https://in.linkedin.com/in/lahar-solanki-b04a2028b
 
 ---
+```
