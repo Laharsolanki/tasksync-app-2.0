@@ -58,7 +58,7 @@ It builds upon the foundation of the original [TaskSync 1.0](https://github.com/
 ````bash
 git clone https://github.com/Laharsolanki/tasksync-app-2.0.git
 cd tasksync-app-2.0
-```
+````
 
 2️⃣ Install Dependencies
 ```
