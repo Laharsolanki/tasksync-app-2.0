@@ -22,9 +22,19 @@ TaskSync App 2.0 is a modern, themeable task management web app built with React
 
 ## 🛠️ Technologies Used
 
-- **Frontend:** React, HTML, CSS
-- **State Management:** React useState & useEffect
-- **Animations:** Hurray popup for task completion
+## 🛠️ Technologies Used
+
+| Technology        | Purpose                                        |
+|-------------------|------------------------------------------------|
+| **React.js**      | Frontend framework for building UI             |
+| **Node.js**       | Backend runtime environment                    |
+| **Express.js**    | Backend framework for handling APIs            |
+| **MongoDB Atlas** | Cloud database to store tasks                  |
+| **Axios**         | HTTP client for frontend–backend communication |
+| **Vercel**        | Frontend deployment platform                   |
+| **Render**        | Backend deployment platform                    |
+| **Git/GitHub**    | Version control and code collaboration         |
+
 
 ---
 
