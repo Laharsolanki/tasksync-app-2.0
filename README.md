@@ -82,10 +82,10 @@ npm run build
 ```
 
 🎯 Why TaskSync 2.0?
-TaskSync 2.0 isn’t just an update – it’s a step up in design, usability, and performance.
-Old version = ✔️ functional but basic.
-New version = 🌟 polished, customizable, and production-ready.
-This project reflects my learning journey in the MERN stack, moving from basic CRUD apps to theme persistence, UI animations, and full-stack deployment.
+- TaskSync 2.0 isn’t just an update – it’s a step up in design, usability, and performance.
+- Old version = ✔️ functional but basic.
+- New version = 🌟 polished, customizable, and production-ready.
+- This project reflects my learning journey in the MERN stack, moving from basic CRUD apps to theme persistence, UI animations, and full-stack deployment.
 
 🤝 Contribution
 Any suggestions for TaskSync 3.0 are welcome!
