@@ -31,10 +31,8 @@ It builds upon the foundation of the original [TaskSync 1.0](https://github.com/
 ✅ **Task Sorting** – Incomplete tasks stay on top, completed tasks below  
 ✅ **Persistent Settings** – Theme & background saved in localStorage  
 ✅ **Celebration Animation** – “Hurray 🎉” when all tasks are completed  
-✅ **Custom Context Menu** – Right-click on task → Delete option  
 ✅ **Clear All Tasks** – Remove everything with one click  
 ✅ **Optimized API Integration** – Using Axios with environment variables  
-✅ **Responsive Design** – Works seamlessly on all devices
 
 ---
 
