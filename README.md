@@ -87,8 +87,6 @@ npm run build
 - New version = 🌟 polished, customizable, and production-ready.
 - This project reflects my learning journey in the MERN stack, moving from basic CRUD apps to theme persistence, UI animations, and full-stack deployment.
 
-🤝 Contribution
-Any suggestions for TaskSync 3.0 are welcome!
 
 🧑‍💻 Author <br>
 👤 Lahar Solanki <br>
